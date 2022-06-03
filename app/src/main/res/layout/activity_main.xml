@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:gravity="center">
 
     <Button
         android:id="@+id/camBtn"
@@ -12,11 +14,5 @@
         android:layout_height="wrap_content"
         android:layout_x="88dp"
         android:layout_y="124dp"
-        android:text="Ask for Camera Permission" />
-
-    <WebView
-        android:id="@+id/webView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"/>
+        android:text="Go to WebView" />
 </LinearLayout>
