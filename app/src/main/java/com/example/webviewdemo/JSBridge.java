@@ -21,16 +21,19 @@ public class JSBridge  extends AppCompatActivity {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 
+    // Add Product to Card
     @JavascriptInterface
     public String addToCart(String params) {
         return "SUCCESS";
     }
 
+    // Remove Product from Card
     @JavascriptInterface
     public String removeFromCart(String params) {
         return "SUCCESS";
     }
 
+    // close WebView Activity
     @JavascriptInterface
     public void closeWebView() {
         Intent intent = new Intent(this, MainActivity.class);
