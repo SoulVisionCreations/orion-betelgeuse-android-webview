@@ -1,20 +1,29 @@
 package com.example.webviewdemo;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.PermissionRequest;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 
 public class WebViewActivity extends AppCompatActivity {
     WebView webView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_web_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Button buttonOne = (Button) findViewById(R.id.close_button);
+        buttonOne.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                new JSBridge().closeWebView();
+            }
+        });
         openWebView();
     }
 
@@ -33,7 +42,7 @@ public class WebViewActivity extends AppCompatActivity {
             @Override
             public void onPageFinished(WebView view, String ulr) {
                 String script = "document.getElementsByTagName('body')[0]"+".addEventListener("+
-                        "'click', function () {  js.ShowToast('Calling native class method form js code');})";
+                        "'click', function () {  js.showToast('Calling native class method form js code');})";
                 webView.evaluateJavascript(script, null);
             }
         });
