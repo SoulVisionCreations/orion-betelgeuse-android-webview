@@ -38,11 +38,14 @@ public class WebViewActivity extends AppCompatActivity {
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 return super.shouldOverrideUrlLoading(view, request);
             }
-            // for testing added click event listener
+
+            // Example How to call native function
+            // call function using avataarCallBack Object
+            // Test Script injecting for Testing callback function
             @Override
             public void onPageFinished(WebView view, String ulr) {
                 String script = "document.getElementsByTagName('body')[0]"+".addEventListener("+
-                        "'click', function () {  js.showToast('Calling native class method form js code');})";
+                        "'click', function () {  avataarCallBack.addToCart('Calling native class method form js code');})";
                 webView.evaluateJavascript(script, null);
             }
         });
@@ -52,7 +55,7 @@ public class WebViewActivity extends AppCompatActivity {
                 request.grant(request.getResources());
             }
         });
-        webView.addJavascriptInterface(new JSBridge(this), "js");
+        webView.addJavascriptInterface(new JSBridge(this), "avataarCallBack");
         webView.loadUrl("https://orion-dev.avataar.me/engine/AVTR-TNT-t8mv4evu/AVTR_EXP_d41d8cd9/index.html?ar=0&mode=renderer&tenantId=AVTR-TNT-t8mv4evu&productId=168");
     }
 }
