@@ -24,16 +24,16 @@ public class JSBridge  extends AppCompatActivity {
 
     // Add Product to Card
     @JavascriptInterface
-    public String addToCart(String params) {
-        Log.d("LOGCAT", params);
-        Toast.makeText(context, "addToCart", Toast.LENGTH_SHORT).show();
+    public String addToCart(String productId, String variantId) {
+        Log.d("LOGCAT", productId + "," + variantId);
+        Toast.makeText(context, "addToCart" + productId + variantId, Toast.LENGTH_SHORT).show();
         return "SUCCESS";
     }
 
     // Remove Product from Card
     @JavascriptInterface
-    public String removeFromCart(String params) {
-        Log.d("LOGCAT", params);
+    public String removeFromCart(String productId, String variantId) {
+        Log.d("LOGCAT", productId + "," + variantId);
         Toast.makeText(context, "removeFromCart", Toast.LENGTH_SHORT).show();
         return "SUCCESS";
     }

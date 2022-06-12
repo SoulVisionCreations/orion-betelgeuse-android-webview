@@ -30,6 +30,10 @@ public class WebViewActivity extends AppCompatActivity {
     public void openWebView() {
         webView = findViewById(R.id.webView);
         WebSettings webSettings = webView.getSettings();
+        // needed for debugging JS code inside webView.
+        webView.setWebContentsDebuggingEnabled(true);
+
+        // This is needed to make sure that webView can execute JS code properly.
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
         webSettings.setMediaPlaybackRequiresUserGesture(false);
@@ -39,14 +43,8 @@ public class WebViewActivity extends AppCompatActivity {
                 return super.shouldOverrideUrlLoading(view, request);
             }
 
-            // Example How to call native function
-            // call function using avataarCallBack Object
-            // Test Script injecting for Testing callback function
             @Override
             public void onPageFinished(WebView view, String ulr) {
-                String script = "document.getElementsByTagName('body')[0]"+".addEventListener("+
-                        "'click', function () {  avataarCallBack.addToCart('Calling native class method form js code');})";
-                webView.evaluateJavascript(script, null);
             }
         });
         webView.setWebChromeClient(new WebChromeClient() {
@@ -55,7 +53,11 @@ public class WebViewActivity extends AppCompatActivity {
                 request.grant(request.getResources());
             }
         });
-        webView.addJavascriptInterface(new JSBridge(this), "avataarCallBack");
-        webView.loadUrl("https://orion-dev.avataar.me/engine/AVTR-TNT-t8mv4evu/AVTR_EXP_d41d8cd9/index.html?ar=0&mode=renderer&tenantId=AVTR-TNT-t8mv4evu&productId=168");
+        // This method attaches the Javascript bridge Object with webView document.
+        // The methods inside this object can now be accessed through window.avataarCallback inside webView context.
+        webView.addJavascriptInterface(new JSBridge(this), "avataarCallback");
+
+        // The sample URL to load.
+        webView.loadUrl("https://orion-dev.avataar.me/engine/TOUCHCHANGES1/AVTR_EXP_d41d8cd9/index.html?ar=0&tenantId=AVTR-TNT-t8mv4evu&productId=158&env=local&onFloor=false");
     }
 }
