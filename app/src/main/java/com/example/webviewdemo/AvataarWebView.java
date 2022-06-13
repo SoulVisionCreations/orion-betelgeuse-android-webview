@@ -10,25 +10,19 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 
-public class WebViewActivity extends AppCompatActivity {
-    WebView webView;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
-        setContentView(R.layout.activity_web_view);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Button buttonOne = (Button) findViewById(R.id.close_button);
-        buttonOne.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                new JSBridge().closeWebView();
-            }
-        });
-        openWebView();
+/**
+ * This class contains code to load the Avataar WebView
+ */
+public class AvataarWebView {
+    private WebView webView;
+    private AvataarJSBridgeInterface jsBridge;
+
+    public AvataarWebView(WebView webView, AvataarJSBridgeInterface jsBridge) {
+        this.webView = webView;
+        this.jsBridge = jsBridge;
     }
 
-    public void openWebView() {
-        webView = findViewById(R.id.webView);
+    public void open(String productId, String variantId) {
         WebSettings webSettings = webView.getSettings();
         // needed for debugging JS code inside webView.
         webView.setWebContentsDebuggingEnabled(true);
@@ -55,9 +49,15 @@ public class WebViewActivity extends AppCompatActivity {
         });
         // This method attaches the Javascript bridge Object with webView document.
         // The methods inside this object can now be accessed through window.avataarCallback inside webView context.
-        webView.addJavascriptInterface(new JSBridge(this), "avataarCallback");
+        webView.addJavascriptInterface(jsBridge, "avataarCallback");
 
-        // The sample URL to load.
-        webView.loadUrl("https://orion-dev.avataar.me/engine/TOUCHCHANGES1/AVTR_EXP_d41d8cd9/index.html?ar=0&tenantId=AVTR-TNT-t8mv4evu&productId=158&env=local&onFloor=false");
+        // The Avataar Experience URL to load.
+        webView.loadUrl(
+                "https://orion-dev.avataar.me/engine/TOUCHCHANGES1/AVTR_EXP_d41d8cd9/index.html?ar=0&tenantId=AVTR-TNT-t8mv4evu&productId="
+                        + productId + "&env=local&onFloor=false");
+    }
+    
+    public void close() {
+        jsBridge.closeWebView();
     }
 }
