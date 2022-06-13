@@ -10,6 +10,9 @@ public interface AvataarJSBridgeInterface {
     // Remove Product from Card
     public String removeFromCart(String productId, String variantId);
 
+   // Goto Cart
+    public void goToCart();
+
     //Close View
     public void closeWebView();
 }

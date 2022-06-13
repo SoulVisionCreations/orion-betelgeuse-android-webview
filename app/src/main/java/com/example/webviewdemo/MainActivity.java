@@ -31,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /** Camera permission is needed to trigger the AR experience */
+    /**
+     * Camera permission is needed to trigger the AR experience
+     */
     public void askCameraPermissions() {
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
