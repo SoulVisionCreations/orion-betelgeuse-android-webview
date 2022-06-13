@@ -46,6 +46,6 @@ public class SampleWebViewActivity extends AppCompatActivity {
         Bundle params = getIntent().getExtras();
         String productId = params.getString(PRODUCT_ID);
         String variantId = params.getString(VARIANT_ID);
-        avataarWebView.open(webView, jsBridge, productId, variantId);
+        avataarWebView.open(productId, variantId);
     }
 }
