@@ -1,5 +1,7 @@
 package com.example.webviewdemo;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.PermissionRequest;
@@ -22,6 +24,7 @@ public class AvataarWebView {
         this.jsBridge = jsBridge;
     }
 
+    @SuppressLint("JavascriptInterface")
     public void open(String productId, String variantId) {
         WebSettings webSettings = webView.getSettings();
         // needed for debugging JS code inside webView.
