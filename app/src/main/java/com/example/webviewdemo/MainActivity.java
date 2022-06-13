@@ -31,7 +31,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /** Camera permission is needed to trigger the AR experience */
+    /** Camera permission is needed to trigger Avataar's experience
+     * This sample code asks for camera permission as soon as 3D experience is triggered irrespective of whether 3D experience
+     * or AR experience is opened first.
+     * This will be a one time permission for an app user.
+     * */
     public void askCameraPermissions() {
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, CAMERA_PERMISSION_CODE);
@@ -62,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         //Send Product ID and Variant ID to the WebViewActivity
         Bundle params = new Bundle();
         params.putString(PRODUCT_ID, "158");
-        params.putString(VARIANT_ID, "none");
+        params.putString(VARIANT_ID, "168");
         intent.putExtras(params);
         startActivity(intent);
     }

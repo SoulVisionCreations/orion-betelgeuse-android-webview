@@ -52,7 +52,7 @@ public class AvataarWebView {
         // The Avataar Experience URL to load.
         webView.loadUrl(
                 "https://orion-dev.avataar.me/engine/TOUCHCHANGES1/AVTR_EXP_d41d8cd9/index.html?ar=0&tenantId=AVTR-TNT-t8mv4evu&productId="
-                        + productId + "&env=local&onFloor=false");
+                        + productId + "&variantId="+variantId + "&env=local&onFloor=false");
     }
     
     public void close() {

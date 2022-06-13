@@ -20,18 +20,12 @@ public class SampleJSBridge  extends AppCompatActivity implements AvataarJSBridg
     public SampleJSBridge() {
     }
 
-    //TODO: Is this needed?
-    @JavascriptInterface
-    public void showToast(String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-    }
-
     // Add Product to Card
     @JavascriptInterface
     @Override
     public String addToCart(String productId, String variantId) {
         Log.d("LOGCAT", productId + "," + variantId);
-        Toast.makeText(context, "addToCart" + productId + variantId, Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "addToCart" + productId +","+ variantId, Toast.LENGTH_SHORT).show();
         return "SUCCESS";
     }
 
@@ -48,6 +42,14 @@ public class SampleJSBridge  extends AppCompatActivity implements AvataarJSBridg
     @JavascriptInterface
     @Override
     public void closeWebView() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    // Example: close WebView and redirect to main activity. It can be modified to redirect user to Cart Page.
+    @JavascriptInterface
+    @Override
+    public void goToCart() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
