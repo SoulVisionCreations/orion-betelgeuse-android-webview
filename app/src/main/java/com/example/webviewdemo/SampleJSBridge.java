@@ -38,13 +38,6 @@ public class SampleJSBridge  extends AppCompatActivity implements AvataarJSBridg
         return "SUCCESS";
     }
 
-    // goTo Cart
-    @JavascriptInterface
-    @Override
-    public void goToCart() {
-        Log.d("LOGCAT", "goToCart");
-        Toast.makeText(context, "goToCart", Toast.LENGTH_SHORT).show();
-    }
 
     // Example. close WebView Activity redirect to another activity on click x button on top
     @JavascriptInterface
