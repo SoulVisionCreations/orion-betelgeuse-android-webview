@@ -1,11 +1,4 @@
 package com.example.webviewdemo;
-import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
-import android.webkit.JavascriptInterface;
-import androidx.appcompat.app.AppCompatActivity;
-import android.widget.Toast;
-
 /**
  * This interface contains the functions to be defined by anyone integrating Avataar's experience
  */
