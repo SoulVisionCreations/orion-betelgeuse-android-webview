@@ -1,4 +1,4 @@
-# Sample Android Application for Avataar Integration
+# Sample Android Application for Avataar Integration (With AddToCart functionality)
 
 This repository contains sample code for integrating Avataar experience URL into your Android Application.
 
