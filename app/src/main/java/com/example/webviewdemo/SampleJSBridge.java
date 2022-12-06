@@ -54,4 +54,18 @@ public class SampleJSBridge  extends AppCompatActivity implements AvataarJSBridg
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    // Example: close WebView and redirect to main activity. It can be modified to redirect user to Cart Page.
+    @JavascriptInterface
+    @Override
+    public void requestCameraPermission() {
+        Log.d("LOGCAT", "askCameraPermissions");
+//        context.askCameraPermissions();
+    }
+
+    @JavascriptInterface
+    @Override
+    public void backButton() {
+        Log.d("LOGCAT", "clicked on backbutton");
+    }
 }

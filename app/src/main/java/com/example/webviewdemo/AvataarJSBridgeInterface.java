@@ -1,4 +1,7 @@
 package com.example.webviewdemo;
+
+import android.content.Context;
+
 /**
  * This interface contains the functions to be defined by anyone integrating Avataar's experience
  */
@@ -15,4 +18,10 @@ public interface AvataarJSBridgeInterface {
 
     //Close View
     public void closeWebView();
+
+    // request camera permission
+    public void requestCameraPermission();
+
+//    backbutton
+    public void backButton();
 }

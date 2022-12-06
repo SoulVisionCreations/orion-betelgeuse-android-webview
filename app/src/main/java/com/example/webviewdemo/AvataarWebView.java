@@ -20,10 +20,12 @@ public class AvataarWebView {
     }
 
     @SuppressLint("JavascriptInterface")
-    public void open(String productId, String variantId) {
+    public void open(String productId, String tenantId, String arV) {
         WebSettings webSettings = webView.getSettings();
         // needed for debugging JS code inside webView.
         webView.setWebContentsDebuggingEnabled(true);
+        webView.setVerticalScrollBarEnabled(true);
+        webView.setHorizontalScrollBarEnabled(true);
 
         // This is needed to make sure that webView can execute JS code properly.
         webSettings.setJavaScriptEnabled(true);
@@ -50,9 +52,10 @@ public class AvataarWebView {
         webView.addJavascriptInterface(jsBridge, "avataarCallback");
 
         // The Avataar Experience URL to load.
-        webView.loadUrl(
-                "https://orion-dev.avataar.me/engine/TOUCHCHANGES1/AVTR_EXP_d41d8cd9/index.html?ar=0&tenantId=AVTR-TNT-t8mv4evu&productId="
-                        + productId + "&variantId="+variantId + "&env=local&onFloor=false");
+//        String urlString = "https://orion.avataar.me/engine/AVTR_TNT_JMJRmNZy/AVTR_EXP_4e666717/index.html?productId=AVTR-WRK-mX8LZFfL&env=preprod&addToCartEnabled=false";
+//        String urlString = "https://0846-182-66-75-46.in.ngrok.io/?ar=0&mode=renderer&tenantId="+tenantId+"&productId="+productId+"&roomId=room_123&roomBackground=Background_Dominar";
+        String urlString = "https://orion.avataar.me/engine/AVTR_TNT_JMJRmNZy/AVTR_EXP_4e666717/index.html?productId=AVTR-WRK-mX8LZFfL&env=preprod&addToCartEnabled=false";
+        webView.loadUrl(urlString );
     }
     
     public void close() {
